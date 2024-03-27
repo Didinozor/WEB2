@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 1</title>
+</head>
+<body>
+    <h1>Heure</h1><br/>
+    <p>IL EST: <span id="hour"></span></p>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            setInterval(( )=> {
+                const mnt = new Date();
+                //const heures = mnt.getHours();
+                //const minutes = mnt.getMinutes();
+                //const secondes = mnt.getSeconds();
+                const chaine = mnt.toLocaleTimeString();
+                //console.log(chaine)
+                $('#hour').text(chaine);
+            },250);
+        
+        });
+    </script>
+</body>
+</html>

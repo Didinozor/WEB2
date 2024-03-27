@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clique moi</title>
+</head>
+<body>
+    <button name="moche" onClick=Clic()>Dare you?</button>
+
+    <h1 id="congrats" style="display: none;">Did you think of killing yourself?</h1>
+
+    <hr/>
+
+    <script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
+    <script type="text/javascript">
+        console.log('Hello')
+
+        function Clic(){
+            let texte = $('#congrats').select()
+            //console.log(texte)
+            $('#congrats').fadeIn(5000);
+            //document.getElementById('congrats').style.visibility=visible;
+        }
+    </script>
+</body>
+</html>
