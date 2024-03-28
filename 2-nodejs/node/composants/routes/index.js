@@ -32,11 +32,7 @@ async function getComposants() {
       Category: true,
     },
   });
-  composant = items
-};
-async function getCategory() {
-  const resultat = await dbPrisma.Category.findMany()
-  categories = resultat
+  composants = items
 };
 
 module.exports = router;
