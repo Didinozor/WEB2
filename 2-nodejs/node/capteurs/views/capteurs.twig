@@ -1,0 +1,56 @@
+{% extends "layout.twig" %}
+{% block body %}
+    <div class="container">
+        <div class="col-12">
+            <h1 class="text-center text-uppercase">Capteurs</h1>
+        </div>
+    </div>
+    
+
+    <div class="container mt-3">
+        <div class="row mt-2">
+        {% for capteur in capteurs %}
+            <div class="col-6 mt-2">
+                <div class="card border-default mb-3 shadow">
+                    <div class="card-header bg-transparent border-default">Capteur {{capteur.id}}</div>
+                    <div class="card-body text-default">
+                    <h5 class="card-title">Capteur de BLAHAJ {{capteur.id}}</h5>
+                    <p class="card-text">{{capteur.mesure}}</div>
+                    <div class="card-footer bg-transparent border-default">Last Upadate: <code>{{capteur.date | date('h:i:s')}}</code></div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
+        <div class="row mt-2">
+                <div class="col-12 mt-2">
+                    <div class="card border-default mb-3 shadow">
+                        <div class="card-header bg-transparent border-default">Capteur {{capteur.id}}</div>
+                        <div class="card-body text-default">
+                        <h5 class="card-title">Ajout d'un capteur</h5>
+                        <p class="card-text">
+                            <form action="/capteurs" method="post">
+                                <div class="form-group">
+                                  <label for="nom">Nom</label>
+                                  <input type="text" name="nom" id="nom" class="form-control" placeholder="Ex: Chaudiere" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="mesure">Mesure</label>
+                                    <input type="number" name="mesure" id="mesure" class="form-control" placeholder="Ex: 00" required>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary mt-1">Ajouter</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+   {# {% block scripts %}
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script type="text/javascripts"></script>
+    {% endblock %}#}
+{% endblock %}

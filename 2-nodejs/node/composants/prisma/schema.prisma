@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  idCategory Int    @id @default(autoincrement()) @db.UnsignedInt
+  name       String @db.VarChar(10)
+  Item       Item[]
+}
+
+model Item {
+  idItem      Int       @id @default(autoincrement()) @db.UnsignedInt
+  idCategory  Int?      @db.UnsignedInt
+  qty         Int       @db.UnsignedInt
+  ref         String?   @db.VarChar(9)
+  description String    @db.VarChar(36)
+  price       Float?    @db.Float
+  location    Int?
+  Category    Category? @relation(fields: [idCategory], references: [idCategory], onDelete: Restrict, onUpdate: Restrict, map: "Item_ibfk_1")
+  Line        Line[]
+
+  @@index([idCategory], map: "idCategory")
+}
+
+model Status {
+  idStatus Int     @id @default(autoincrement()) @db.UnsignedInt
+  name     String? @db.VarChar(13)
+  User     User[]
+}
+
+model User {
+  idUser      Int           @id @default(autoincrement()) @db.UnsignedInt
+  idStatus    Int?          @db.UnsignedInt
+  lastName    String?       @db.VarChar(12)
+  firstName   String?       @db.VarChar(10)
+  password    String?       @db.VarChar(10)
+  Transaction Transaction[]
+  Status      Status?       @relation(fields: [idStatus], references: [idStatus], onDelete: Restrict, onUpdate: Restrict, map: "User_ibfk_1")
+
+  @@index([idStatus], map: "idStatus")
+}
+
+model Line {
+  idLine        Int         @id @default(autoincrement()) @db.UnsignedInt
+  idTransaction Int         @db.UnsignedInt
+  idItem        Int         @db.UnsignedInt
+  quantity      Int
+  Transaction   Transaction @relation(fields: [idTransaction], references: [idTransaction], onUpdate: Restrict, map: "Line_ibfk_1")
+  Item          Item        @relation(fields: [idItem], references: [idItem], onUpdate: Restrict, map: "Line_ibfk_2")
+
+  @@index([idItem], map: "idItem")
+  @@index([idTransaction], map: "idTransaction")
+}
+
+model Transaction {
+  idTransaction Int      @id @default(autoincrement()) @db.UnsignedInt
+  idUser        Int      @db.UnsignedInt
+  time          DateTime @db.DateTime(0)
+  type          Boolean
+  Line          Line[]
+  User          User     @relation(fields: [idUser], references: [idUser], onUpdate: Restrict, map: "Transaction_ibfk_1")
+
+  @@index([idUser], map: "idUser")
+}

@@ -1,0 +1,18 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h1>Accueil</h1>
+  
+  <div class="container mb-3">
+
+    <div class="jumbotron bg-transparent shadow rounded border-1">
+      <h1 class="display-3 text-center">Gestion des composants</h1>
+      <p class="lead text-center">total des items: {{composants | length}}</p>
+      <hr class="my-2">
+      {% for row in array %}
+        
+      {% endfor %}
+      <p class="p-1"><a href="#">More info</a></p>
+    </div>
+  </div>
+{% endblock %}

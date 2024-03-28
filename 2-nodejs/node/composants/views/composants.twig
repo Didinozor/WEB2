@@ -1,0 +1,80 @@
+{% extends "layout.twig" %}
+{% block body %}
+    <div class="container">
+        <div class="col-12">
+            <h1 class="text-center text-uppercase">Listing des composants</h1>
+        </div>
+    </div>
+    
+
+    <div class="container mt-3">
+        <div class="row mt-2">
+        {% for item in composants %}
+            <div class="col-3 mt-2">
+                <div class="card border-default mb-3 shadow">
+                    <div class="card-header bg-transparent border-default">Item {{item.idItem}}</div>
+                    <div class="card-body text-default">
+                    <h5 class="card-title">Référence: {{item.ref}} {{item.idCategory.nom}}</h5>
+                    <h5 class="card-title">Catégorie: {{composant.category.name}}</h5>
+                    <p class="card-text">Quantité: {{item.qty}}</div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
+        <div class="row mt-2">
+                <div class="col-12 mt-2">
+                    <div class="card border-default mb-3 shadow">
+                        <div class="card-body text-default">
+                        <h5 class="card-title">Ajout d'un composant</h5>
+                        <p class="card-text">
+                            <form action="/capteurs" method="post">
+                                <div class="form-group">
+                                  <label for="ref">Référence</label>
+                                  <input type="text" name="ref" id="ref" class="form-control" placeholder="Ex: j'en ai pas" required>
+                                    <div class="dropdown open">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                    Catégorie
+                                                </button>
+                                        <div class="dropdown-menu" aria-labelledby="triggerId">
+                                            <button class="dropdown-item" href="#">1</button>
+                                            <button class="dropdown-item" href="#">2</button>
+                                        </div>
+                                </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="desc">Description</label>
+                                    <input type="text" name="desc" id="desc" class="form-control" placeholder="Ex: 7-segments anode commune blabla" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="qty">Quantité</label>
+                                    <input type="number" name="qty" id="qty" class="form-control" placeholder="Ex: 10" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="price">Prix(€)</label>
+                                    <input type="number" name="price" id="price" class="form-control" placeholder="Ex: 25" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="loc">Localisation</label>
+                                    <input type="number" name="loc" id="loc" class="form-control" placeholder="Ex: 0001" required>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary mt-1">Ajouter</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+   {# {% block scripts %}
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script type="text/javascripts"></script>
+    {% endblock %}#}
+{% endblock %}
